@@ -1,2 +1,237 @@
-https://github.com/martinberbernar-sketch/fidelidad/upload/main
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Club Fidelidad</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8cc7e;
+    --gold-dark: #9a7a2e;
+    --noir: #0d0d0d;
+    --noir-card: #141414;
+    --surface: #1e1e1e;
+    --border: rgba(201,168,76,0.2);
+    --border-hover: rgba(201,168,76,0.5);
+    --text: #f5f0e8;
+    --text-muted: #8a8070;
+    --text-soft: #c8bfaa;
+    --success: #4caf7d;
+    --error: #e05c5c;
+    --radius: 2px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: var(--noir); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,168,76,0.07) 0%, transparent 70%), repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(201,168,76,0.025) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(201,168,76,0.025) 40px); pointer-events: none; z-index: 0; }
+  #app { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 0 16px 60px; }
+  header { width: 100%; max-width: 520px; text-align: center; padding: 48px 0 32px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+  .logo-ornament { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 10px; color: var(--gold); font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 500; }
+  .logo-ornament::before, .logo-ornament::after { content: ''; height: 1px; width: 40px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .logo-ornament::after { background: linear-gradient(90deg, var(--gold), transparent); }
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 7vw, 40px); font-weight: 700; letter-spacing: 0.04em; background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.1; }
+  .tagline { margin-top: 6px; font-size: 11px; letter-spacing: 0.3em; color: var(--text-muted); text-transform: uppercase; font-weight: 400; }
+  .view { width: 100%; max-width: 520px; display: none; animation: fadeUp 0.4s ease; }
+  .view.active { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .card { background: var(--noir-card); border: 1px solid var(--border); padding: 28px 24px; margin-bottom: 16px; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--gold-light); margin-bottom: 20px; letter-spacing: 0.02em; }
+  .field { margin-bottom: 16px; }
+  label { display: block; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
+  input[type="text"], input[type="number"], input[type="password"] { width: 100%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; padding: 12px 14px; border-radius: var(--radius); outline: none; transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none; }
+  input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.1); }
+  input::placeholder { color: var(--text-muted); font-size: 14px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 20px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; border: none; border-radius: var(--radius); cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden; }
+  .btn::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0); transition: background 0.15s; }
+  .btn:active::after { background: rgba(255,255,255,0.08); }
+  .btn-primary { background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark)); background-size: 200% 100%; background-position: right; color: var(--noir); }
+  .btn-primary:hover { background-position: left; }
+  .btn-secondary { background: transparent; border: 1px solid var(--border-hover); color: var(--gold); }
+  .btn-secondary:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+  .btn-ghost { background: transparent; color: var(--text-muted); font-size: 11px; padding: 10px; width: auto; letter-spacing: 0.1em; }
+  .btn-ghost:hover { color: var(--gold); }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  .tabs { display: flex; border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 24px; overflow: hidden; }
+  .tab { flex: 1; padding: 12px; text-align: center; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; cursor: pointer; color: var(--text-muted); background: var(--noir-card); border: none; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+  .tab.active { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); color: var(--noir); }
+  .tab:not(.active):hover { color: var(--gold); }
+  #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 13px; font-family: 'Inter', sans-serif; padding: 12px 24px; border-radius: var(--radius); box-shadow: 0 8px 32px rgba(0,0,0,0.5); z-index: 1000; transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); max-width: 320px; text-align: center; white-space: nowrap; }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+  #toast.success { border-color: rgba(76,175,125,0.5); color: var(--success); }
+  #toast.error { border-color: rgba(224,92,92,0.5); color: var(--error); }
+  #search-results { margin-top: 12px; }
+  .profile-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border); margin-bottom: 8px; border-radius: var(--radius); gap: 12px; transition: border-color 0.2s; }
+  .profile-row:hover { border-color: var(--border-hover); }
+  .profile-info { flex: 1; min-width: 0; }
+  .profile-name { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .profile-dni { font-size: 11px; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.08em; }
+  .profile-points { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--gold); text-align: right; flex-shrink: 0; }
+  .profile-points span { display: block; font-family: 'Inter', sans-serif; font-size: 9px; color: var(--text-muted); font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; text-align: right; }
+  .add-pts-row { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
+  .add-pts-row input { flex: 1; padding: 10px 12px; font-size: 14px; }
+  .add-pts-row .btn { width: auto; flex-shrink: 0; padding: 10px 18px; font-size: 11px; }
+  .points-display { text-align: center; padding: 28px 16px; }
+  .points-number { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 700; line-height: 1; background: linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .points-label { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border-hover), transparent); margin: 20px 0; }
+  .client-info-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-soft); padding: 6px 0; }
+  .client-info-row strong { color: var(--text); font-weight: 500; }
+  .ornament { text-align: center; color: var(--gold); font-size: 18px; letter-spacing: 0.3em; margin: 8px 0; opacity: 0.5; }
+  .spinner { width: 18px; height: 18px; border: 2px solid rgba(201,168,76,0.3); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .empty-state { text-align: center; padding: 32px 16px; color: var(--text-muted); font-size: 13px; font-style: italic; font-family: 'Playfair Display', serif; }
+  .top-bar { width: 100%; max-width: 520px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .badge { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--border); padding: 4px 10px; font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="logo-ornament">Programa exclusivo</div>
+    <h1>Club Fidelidad</h1>
+    <p class="tagline">Boutique &nbsp;·&nbsp; Privilegios</p>
+  </header>
+  <div class="view active" id="view-selector">
+    <div class="tabs">
+      <button class="tab" onclick="showView('view-client')">Soy Cliente</button>
+      <button class="tab" onclick="promptAdmin()">Administrar</button>
+    </div>
+    <div class="ornament">— ✦ —</div>
+  </div>
+  <div class="view" id="view-client">
+    <div class="card">
+      <p class="card-title">Consultá tus puntos</p>
+      <div class="field">
+        <label>Número de DNI</label>
+        <input type="number" id="client-dni" placeholder="Ingresá tu DNI" />
+      </div>
+      <div class="field">
+        <label>Tu nombre</label>
+        <input type="text" id="client-name" placeholder="Nombre completo" />
+      </div>
+      <button class="btn btn-primary" onclick="clientLogin()">Ingresar al club</button>
+    </div>
+    <div style="text-align:center;margin-top:4px;">
+      <button class="btn btn-ghost" onclick="showView('view-selector')">← Volver</button>
+    </div>
+  </div>
+  <div class="view" id="view-profile">
+    <div class="card">
+      <div class="points-display">
+        <div class="points-number" id="profile-pts">0</div>
+        <div class="points-label">Puntos acumulados</div>
+      </div>
+      <div class="divider"></div>
+      <div class="client-info-row"><span>Nombre</span><strong id="profile-name-display">—</strong></div>
+      <div class="client-info-row"><span>DNI</span><strong id="profile-dni-display">—</strong></div>
+    </div>
+    <div style="text-align:center;margin-top:4px;">
+      <button class="btn btn-ghost" onclick="showView('view-client')">← Salir</button>
+    </div>
+  </div>
+  <div class="view" id="view-admin-login">
+    <div class="card">
+      <p class="card-title">Acceso Administrador</p>
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" id="admin-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter') verifyAdmin()" />
+      </div>
+      <button class="btn btn-primary" onclick="verifyAdmin()">Ingresar</button>
+    </div>
+    <div style="text-align:center;margin-top:4px;">
+      <button class="btn btn-ghost" onclick="showView('view-selector')">← Volver</button>
+    </div>
+  </div>
+  <div class="view" id="view-admin">
+    <div class="top-bar">
+      <span class="badge">✦ Admin</span>
+      <button class="btn btn-ghost" style="width:auto;padding:6px 12px;" onclick="adminLogout()">Salir</button>
+    </div>
+    <div class="card">
+      <p class="card-title">Buscar perfil</p>
+      <div class="field">
+        <label>Nombre o DNI</label>
+        <input type="text" id="admin-search" placeholder="Escribí para buscar..." oninput="searchProfiles()" onkeydown="if(event.key==='Enter') searchProfiles(true)" />
+      </div>
+      <div id="search-results"></div>
+    </div>
+  </div>
+</div>
+<div id="toast"></div>
+<script>
+const SB_URL="https://jskdumhuduxtyfzlrwcc.supabase.co";
+const SB_KEY="sb_publishable_kTx_AdD1_MfWTNoawYHtlA_iwW-7QWreyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impza2R1bWh1ZHV4dHlmemxyd2NjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NDI4ODksImV4cCI6MjA5MzMxODg4OX0.jWIrw0Szw7LzawUrhrNpySSEIHF5ttITjkbPrVkgnag";
+const ADMIN_PASS="admin1234";
+const headers={"Content-Type":"application/json","apikey":SB_KEY,"Authorization":`Bearer ${SB_KEY}`,"Prefer":"return=representation"};
+async function sbGet(f=""){const r=await fetch(`${SB_URL}/rest/v1/perfiles?${f}`,{headers});if(!r.ok)throw new Error(await r.text());return r.json();}
+async function sbInsert(b){const r=await fetch(`${SB_URL}/rest/v1/perfiles`,{method:"POST",headers,body:JSON.stringify(b)});if(!r.ok)throw new Error(await r.text());return r.json();}
+async function sbPatch(dni,b){const r=await fetch(`${SB_URL}/rest/v1/perfiles?dni=eq.${encodeURIComponent(dni)}`,{method:"PATCH",headers,body:JSON.stringify(b)});if(!r.ok)throw new Error(await r.text());return r.json();}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function promptAdmin(){showView('view-admin-login');document.getElementById('admin-pass').value='';}
+let toastTimer;
+function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className=`show ${type}`;clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.className='',3000);}
+async function clientLogin(){
+  const dni=document.getElementById('client-dni').value.trim();
+  const name=document.getElementById('client-name').value.trim();
+  if(!dni){toast('Ingresá tu DNI','error');return;}
+  try{
+    let[perfil]=await sbGet(`dni=eq.${encodeURIComponent(dni)}&limit=1`);
+    if(!perfil){if(!name){toast('Ingresá tu nombre para registrarte','error');return;}const res=await sbInsert({dni,nombre:name,puntos:0});perfil=Array.isArray(res)?res[0]:res;toast('¡Bienvenido al club!','success');}
+    document.getElementById('profile-pts').textContent=perfil.puntos??0;
+    document.getElementById('profile-name-display').textContent=perfil.nombre||name;
+    document.getElementById('profile-dni-display').textContent=perfil.dni;
+    showView('view-profile');
+  }catch(e){toast('Error de conexión','error');console.error(e);}
+}
+function verifyAdmin(){const pass=document.getElementById('admin-pass').value;if(pass===ADMIN_PASS){showView('view-admin');document.getElementById('admin-search').value='';document.getElementById('search-results').innerHTML='';toast('Bienvenido, Admin','success');}else{toast('Contraseña incorrecta','error');}}
+function adminLogout(){showView('view-selector');}
+let searchTimer;
+function searchProfiles(immediate=false){clearTimeout(searchTimer);if(immediate){_doSearch();return;}searchTimer=setTimeout(_doSearch,320);}
+async function _doSearch(){
+  const q=document.getElementById('admin-search').value.trim();
+  const el=document.getElementById('search-results');
+  if(!q){el.innerHTML='';return;}
+  el.innerHTML='<div style="text-align:center;padding:20px 0;"><span class="spinner"></span></div>';
+  try{
+    const isNum=/^\d+$/.test(q);
+    const rows=isNum?await sbGet(`dni=eq.${encodeURIComponent(q)}&order=nombre.asc`):await sbGet(`nombre=ilike.*${encodeURIComponent(q)}*&order=nombre.asc&limit=20`);
+    renderResults(rows);
+  }catch(e){el.innerHTML='<div class="empty-state">Error al buscar.</div>';}
+}
+function renderResults(rows){
+  const el=document.getElementById('search-results');
+  if(!rows.length){el.innerHTML='<div class="empty-state">Sin resultados.</div>';return;}
+  el.innerHTML=rows.map(p=>`
+    <div class="profile-row">
+      <div class="profile-info">
+        <div class="profile-name">${esc(p.nombre)}</div>
+        <div class="profile-dni">DNI ${esc(p.dni)}</div>
+        <div class="add-pts-row">
+          <input type="number" id="pts-${esc(p.dni)}" placeholder="Puntos" min="1" onkeydown="if(event.key==='Enter') addPoints('${esc(p.dni)}')" />
+          <button class="btn btn-secondary" onclick="addPoints('${esc(p.dni)}')">+ Sumar</button>
+        </div>
+      </div>
+      <div class="profile-points"><span id="pts-display-${esc(p.dni)}">${p.puntos??0}</span><span>puntos</span></div>
+    </div>`).join('');
+}
+async function addPoints(dni){
+  const input=document.getElementById(`pts-${dni}`);
+  const val=parseInt(input.value);
+  if(!val||val<1){toast('Ingresá una cantidad válida','error');return;}
+  try{
+    const[current]=await sbGet(`dni=eq.${encodeURIComponent(dni)}&limit=1`);
+    const newPts=(current.puntos||0)+val;
+    await sbPatch(dni,{puntos:newPts});
+    document.getElementById(`pts-display-${dni}`).textContent=newPts;
+    input.value='';
+    toast(`+${val} puntos sumados ✦`,'success');
+  }catch(e){toast('Error al actualizar','error');console.error(e);}
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+</script>
+</body>
+</html>
+
 

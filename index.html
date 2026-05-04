@@ -64,9 +64,7 @@
    padding: 48px 0 32px;
    margin-bottom: 24px;
  }
- .brand-logo {
-   margin-bottom: 24px;
- }
+ .brand-logo { margin-bottom: 24px; }
  .brand-logo .brand-name {
    font-family: 'Playfair Display', Georgia, serif;
    font-size: 32px;
@@ -84,8 +82,7 @@
    margin-top: 6px;
  }
  .divider-line {
-   width: 60px;
-   height: 1px;
+   width: 60px; height: 1px;
    background: linear-gradient(90deg, transparent, #5b3cf5, transparent);
    margin: 16px auto;
  }
@@ -129,12 +126,7 @@
    color: var(--text);
    margin-bottom: 20px;
  }
- .selector-grid {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   gap: 12px;
-   margin-bottom: 8px;
- }
+ .selector-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px; }
  .selector-btn {
    background: var(--surface);
    border: 2px solid var(--border);
@@ -188,7 +180,8 @@
  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(91,60,245,0.4); }
  .btn-secondary { background: var(--surface2); border: 2px solid var(--border); color: var(--primary); }
  .btn-secondary:hover { border-color: var(--primary); background: #f0edff; }
- .btn-danger { background: #fff0f0; border: none; color: var(--error); font-size: 12px; padding: 7px 12px; width: auto; border-radius: 8px; font-weight: 700; }
+ .btn-danger { background: #fff0f0; border: none; color: var(--error); font-size: 12px; padding: 7px 10px; width: auto; border-radius: 8px; font-weight: 700; }
+ .btn-warning { background: #fff8e1; border: none; color: #f59e0b; font-size: 12px; padding: 7px 10px; width: auto; border-radius: 8px; font-weight: 700; }
  .btn-ghost { background: transparent; color: var(--text-muted); font-size: 14px; padding: 10px; width: auto; font-weight: 600; }
  .btn-ghost:hover { color: var(--primary); }
  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
@@ -258,16 +251,45 @@
  .profile-points { text-align: right; }
  .profile-points .big { font-family: 'Nunito', sans-serif; font-size: 26px; font-weight: 900; color: var(--primary); line-height: 1; }
  .profile-points small { display: block; font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
- .add-pts-row { display: flex; gap: 8px; align-items: center; }
- .add-pts-row input { flex: 1; padding: 11px 14px; font-size: 14px; border-radius: 10px; }
- .add-pts-row .btn { width: auto; padding: 11px 18px; font-size: 13px; border-radius: 10px; white-space: nowrap; }
- .admin-product-item { display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--surface); border: 1px solid var(--border); margin-bottom: 8px; border-radius: var(--radius-sm); }
+ .pts-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+ .pts-actions input { flex: 1; min-width: 80px; padding: 10px 12px; font-size: 14px; border-radius: 10px; }
+ .pts-actions .btn { width: auto; padding: 10px 14px; font-size: 12px; border-radius: 10px; white-space: nowrap; }
+ .btn-canjear { background: #fff0f0; border: none; color: var(--error); font-weight: 800; }
+ .btn-canjear:hover { background: #ffe0e0; }
+ .btn-editar-pts { background: #f0f7ff; border: none; color: #3b82f6; font-weight: 800; }
+ .btn-editar-pts:hover { background: #dbeafe; }
+ .edit-pts-row { display: none; margin-top: 10px; gap: 6px; }
+ .edit-pts-row.open { display: flex; }
+ .edit-pts-row input { flex: 1; padding: 10px 12px; font-size: 14px; border-radius: 10px; }
+ .edit-pts-row .btn { width: auto; padding: 10px 14px; font-size: 12px; border-radius: 10px; }
+ .historial-btn { width: 100%; margin-top: 10px; padding: 8px; font-size: 12px; color: var(--text-muted); background: var(--surface2); border: 1px dashed var(--border); border-radius: 8px; cursor: pointer; font-family: 'Nunito', sans-serif; font-weight: 700; }
+ .historial-btn:hover { color: var(--primary); border-color: var(--primary); }
+ .historial-panel { display: none; margin-top: 10px; }
+ .historial-panel.open { display: block; }
+ .tx-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+ .tx-item:last-child { border-bottom: none; }
+ .tx-tipo { font-weight: 700; padding: 3px 8px; border-radius: 6px; font-size: 11px; }
+ .tx-tipo.suma { background: #e6faf3; color: #06d6a0; }
+ .tx-tipo.canje { background: #fff0f0; color: var(--error); }
+ .tx-tipo.edicion { background: #f0f0ff; color: var(--primary); }
+ .tx-pts { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 14px; }
+ .tx-pts.suma { color: var(--success); }
+ .tx-pts.canje { color: var(--error); }
+ .tx-pts.edicion { color: var(--primary); }
+ .tx-fecha { color: var(--text-muted); font-size: 11px; }
+ .admin-product-item { display: flex; align-items: center; gap: 10px; padding: 14px; background: var(--surface); border: 1px solid var(--border); margin-bottom: 8px; border-radius: var(--radius-sm); flex-wrap: wrap; }
  .admin-product-info { flex: 1; min-width: 0; }
  .admin-product-name { font-size: 14px; font-weight: 700; color: var(--text); font-family: 'Nunito', sans-serif; }
  .admin-product-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
  .admin-product-pts { font-family: 'Nunito', sans-serif; font-size: 20px; color: var(--primary); font-weight: 900; white-space: nowrap; text-align: right; }
  .admin-product-pts small { display: block; font-family: 'DM Sans', sans-serif; font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
  .admin-thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 10px; flex-shrink: 0; }
+ .product-edit-panel { display: none; width: 100%; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+ .product-edit-panel.open { display: block; }
+ .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 8px; }
+ .day-field { text-align: center; }
+ .day-field label { font-size: 10px; margin-bottom: 4px; }
+ .day-field input { padding: 8px 4px; font-size: 12px; text-align: center; }
  .form-row { display: flex; gap: 10px; }
  .form-row .field { flex: 1; }
  .spinner { width: 22px; height: 22px; border: 3px solid rgba(91,60,245,0.15); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.7s linear infinite; display: block; margin: 24px auto; }
@@ -276,6 +298,7 @@
  .empty-state .emoji { font-size: 32px; display: block; margin-bottom: 8px; }
  #search-results { margin-top: 8px; }
  .back-area { text-align: center; margin-top: 8px; }
+ .today-badge { display: inline-block; background: var(--accent); color: #7a5c00; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 6px; margin-left: 6px; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -290,6 +313,7 @@
    <p class="tagline"><span>Los Cortesanos</span> &nbsp;·&nbsp; Acumula y gana</p>
  </header>
 
+ <!-- SELECTOR -->
  <div class="view active" id="view-selector">
    <div class="selector-grid">
      <button class="selector-btn primary-btn" onclick="showView('view-client')">
@@ -305,6 +329,7 @@
    </div>
  </div>
 
+ <!-- LOGIN CLIENTE -->
  <div class="view" id="view-client">
    <div class="card">
      <p class="card-title">Ingresa al club</p>
@@ -315,6 +340,7 @@
    <div class="back-area"><button class="btn btn-ghost" onclick="showView('view-selector')">&larr; Volver</button></div>
  </div>
 
+ <!-- PERFIL CLIENTE -->
  <div class="view" id="view-profile">
    <div class="section-tabs">
      <button class="section-tab active" id="tab-mis-puntos" onclick="clientTab('mis-puntos')">Mis puntos</button>
@@ -336,6 +362,11 @@
          <div><div class="chip-label">DNI</div><div class="chip-value" id="profile-dni-display">-</div></div>
        </div>
      </div>
+     <!-- Historial cliente -->
+     <div class="card">
+       <p class="card-title">&#128203; Mis movimientos</p>
+       <div id="client-historial"><span class="spinner"></span></div>
+     </div>
    </div>
    <div id="panel-catalogo" style="display:none;">
      <div class="card">
@@ -346,6 +377,7 @@
    <div class="back-area"><button class="btn btn-ghost" onclick="showView('view-client')">&larr; Salir</button></div>
  </div>
 
+ <!-- LOGIN ADMIN -->
  <div class="view" id="view-admin-login">
    <div class="card">
      <p class="card-title">Acceso Administrador</p>
@@ -355,15 +387,18 @@
    <div class="back-area"><button class="btn btn-ghost" onclick="showView('view-selector')">&larr; Volver</button></div>
  </div>
 
+ <!-- PANEL ADMIN -->
  <div class="view" id="view-admin">
    <div class="top-bar">
-     <span class="badge">Admin</span>
+     <span class="badge">&#9881; Admin</span>
      <button class="btn btn-ghost" style="width:auto;padding:8px 14px;" onclick="adminLogout()">Salir &rarr;</button>
    </div>
    <div class="section-tabs">
      <button class="section-tab active" id="atab-clientes" onclick="adminTab('clientes')">Clientes</button>
      <button class="section-tab" id="atab-catalogo" onclick="adminTab('catalogo')">Catalogo</button>
    </div>
+
+   <!-- PANEL CLIENTES -->
    <div id="apanel-clientes">
      <div class="card">
        <p class="card-title">Buscar cliente</p>
@@ -371,13 +406,15 @@
        <div id="search-results"></div>
      </div>
    </div>
+
+   <!-- PANEL CATALOGO -->
    <div id="apanel-catalogo" style="display:none;">
      <div class="card">
        <p class="card-title">Agregar producto</p>
        <div class="field"><label>Nombre del producto</label><input type="text" id="new-nombre" placeholder="Ej: Remera Premium" /></div>
        <div class="form-row">
          <div class="field"><label>Categoria</label><input type="text" id="new-categoria" placeholder="Ej: Ropa" /></div>
-         <div class="field"><label>Puntos</label><input type="number" id="new-puntos" placeholder="50" min="1" /></div>
+         <div class="field"><label>Puntos base</label><input type="number" id="new-puntos" placeholder="50" min="1" /></div>
        </div>
        <div class="field"><label>Descripcion (opcional)</label><input type="text" id="new-desc" placeholder="Breve descripcion..." /></div>
        <div class="field"><label>URL de imagen (opcional)</label><input type="text" id="new-imagen" placeholder="https://..." /></div>
@@ -391,151 +428,327 @@
  </div>
 </div>
 <div id="toast"></div>
+
 <script>
 const SB_URL="https://jskdumhuduxtyfzlrwcc.supabase.co";
 const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impza2R1bWh1ZHV4dHlmemxyd2NjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NDI4ODksImV4cCI6MjA5MzMxODg4OX0.jWIrw0Szw7LzawUrhrNpySSEIHF5ttITjkbPrVkgnag";
 const ADMIN_PASS="admin1234";
 const H={"Content-Type":"application/json","apikey":SB_KEY,"Authorization":`Bearer ${SB_KEY}`,"Prefer":"return=representation"};
+const DAYS=["dom","lun","mar","mie","jue","vie","sab"];
+const DAYS_LABEL=["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"];
+
 async function sbGet(t,f=""){const r=await fetch(`${SB_URL}/rest/v1/${t}?${f}`,{headers:H});if(!r.ok)throw new Error(await r.text());return r.json();}
 async function sbPost(t,b){const r=await fetch(`${SB_URL}/rest/v1/${t}`,{method:"POST",headers:H,body:JSON.stringify(b)});if(!r.ok)throw new Error(await r.text());return r.json();}
 async function sbPatch(t,f,b){const r=await fetch(`${SB_URL}/rest/v1/${t}?${f}`,{method:"PATCH",headers:H,body:JSON.stringify(b)});if(!r.ok)throw new Error(await r.text());return r.json();}
 async function sbDelete(t,f){const r=await fetch(`${SB_URL}/rest/v1/${t}?${f}`,{method:"DELETE",headers:H});if(!r.ok)throw new Error(await r.text());}
+
 function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function promptAdmin(){showView('view-admin-login');document.getElementById('admin-pass').value='';}
+
 let tt;
 function toast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className=`show ${type}`;clearTimeout(tt);tt=setTimeout(()=>t.className='',3000);}
+
+// Puntos efectivos de un producto según el día actual
+function getPtsDia(p){
+  const dia=DAYS[new Date().getDay()];
+  const key=`puntos_${dia}`;
+  return (p[key]&&p[key]>0)?p[key]:p.puntos;
+}
+
+// ===== CLIENTE =====
+let currentClientDni='';
+
 async function clientLogin(){
- const dni=document.getElementById('client-dni').value.trim();
- const name=document.getElementById('client-name').value.trim();
- if(!dni){toast('Ingresa tu DNI','error');return;}
- try{
-   let[p]=await sbGet('perfiles',`dni=eq.${encodeURIComponent(dni)}&limit=1`);
-   if(!p){if(!name){toast('Ingresa tu nombre para registrarte','error');return;}const res=await sbPost('perfiles',{dni,nombre:name,puntos:0});p=Array.isArray(res)?res[0]:res;toast('Bienvenido al club!','success');}
-   document.getElementById('profile-pts').textContent=p.puntos??0;
-   document.getElementById('profile-name-display').textContent=p.nombre||name;
-   document.getElementById('profile-dni-display').textContent=p.dni;
-   clientTab('mis-puntos');showView('view-profile');
- }catch(e){toast('Error de conexion','error');console.error(e);}
+  const dni=document.getElementById('client-dni').value.trim();
+  const name=document.getElementById('client-name').value.trim();
+  if(!dni){toast('Ingresa tu DNI','error');return;}
+  try{
+    let[p]=await sbGet('perfiles',`dni=eq.${encodeURIComponent(dni)}&limit=1`);
+    if(!p){
+      if(!name){toast('Ingresa tu nombre para registrarte','error');return;}
+      const res=await sbPost('perfiles',{dni,nombre:name,puntos:0});
+      p=Array.isArray(res)?res[0]:res;
+      toast('Bienvenido al club!','success');
+    }
+    currentClientDni=p.dni;
+    document.getElementById('profile-pts').textContent=p.puntos??0;
+    document.getElementById('profile-name-display').textContent=p.nombre||name;
+    document.getElementById('profile-dni-display').textContent=p.dni;
+    clientTab('mis-puntos');
+    showView('view-profile');
+    loadClientHistorial(p.dni);
+  }catch(e){toast('Error de conexion','error');console.error(e);}
 }
+
 function clientTab(tab){
- document.getElementById('panel-mis-puntos').style.display=tab==='mis-puntos'?'block':'none';
- document.getElementById('panel-catalogo').style.display=tab==='catalogo'?'block':'none';
- document.getElementById('tab-mis-puntos').classList.toggle('active',tab==='mis-puntos');
- document.getElementById('tab-catalogo').classList.toggle('active',tab==='catalogo');
- if(tab==='catalogo')loadCatalog();
+  document.getElementById('panel-mis-puntos').style.display=tab==='mis-puntos'?'block':'none';
+  document.getElementById('panel-catalogo').style.display=tab==='catalogo'?'block':'none';
+  document.getElementById('tab-mis-puntos').classList.toggle('active',tab==='mis-puntos');
+  document.getElementById('tab-catalogo').classList.toggle('active',tab==='catalogo');
+  if(tab==='catalogo')loadCatalog();
 }
+
+async function loadClientHistorial(dni){
+  const el=document.getElementById('client-historial');
+  try{
+    const rows=await sbGet('transacciones',`dni=eq.${encodeURIComponent(dni)}&order=fecha.desc&limit=20`);
+    if(!rows.length){el.innerHTML='<div class="empty-state"><span class="emoji">📋</span>Sin movimientos aún.</div>';return;}
+    el.innerHTML=rows.map(tx=>`
+      <div class="tx-item">
+        <span class="tx-tipo ${tx.tipo}">${tx.tipo==='suma'?'Suma':tx.tipo==='canje'?'Canje':'Edición'}</span>
+        <span style="flex:1;padding:0 10px;font-size:12px;color:var(--text-soft)">${esc(tx.descripcion||'-')}</span>
+        <span class="tx-pts ${tx.tipo}">${tx.tipo==='suma'?'+':''}${tx.tipo==='canje'?'-':''}${tx.puntos}</span>
+      </div>`).join('');
+  }catch(e){el.innerHTML='<div class="empty-state">Sin historial.</div>';}
+}
+
 async function loadCatalog(){
- const el=document.getElementById('catalog-list');
- el.innerHTML='<span class="spinner"></span>';
- try{
-   const rows=await sbGet('productos','order=categoria.asc,nombre.asc');
-   if(!rows.length){el.innerHTML='<div class="empty-state"><span class="emoji">&#128235;</span>El catalogo esta vacio.</div>';return;}
-   const groups={};
-   rows.forEach(p=>{if(!groups[p.categoria])groups[p.categoria]=[];groups[p.categoria].push(p);});
-   el.innerHTML=Object.entries(groups).map(([cat,prods])=>`
-     <div class="cat-group">
-       <div class="cat-header">${esc(cat)}</div>
-       ${prods.map(p=>`
-         <div class="product-item">
-           ${p.imagen?`<img class="product-img" src="${esc(p.imagen)}" alt="${esc(p.nombre)}" onerror="this.style.display='none'" />`:`<div class="product-img-placeholder">&#127873;</div>`}
-           <div class="product-body">
-             <div class="product-name">${esc(p.nombre)}</div>
-             ${p.descripcion?`<div class="product-desc">${esc(p.descripcion)}</div>`:''}
-           </div>
-           <div class="product-pts"><span class="pts-num">${p.puntos}</span><span class="pts-text">puntos</span></div>
-         </div>`).join('')}
-     </div>`).join('');
- }catch(e){el.innerHTML='<div class="empty-state">Error al cargar.</div>';}
+  const el=document.getElementById('catalog-list');
+  el.innerHTML='<span class="spinner"></span>';
+  const todayIdx=new Date().getDay();
+  const todayName=DAYS_LABEL[todayIdx];
+  try{
+    const rows=await sbGet('productos','order=categoria.asc,nombre.asc');
+    if(!rows.length){el.innerHTML='<div class="empty-state"><span class="emoji">📦</span>El catálogo está vacío.</div>';return;}
+    const groups={};
+    rows.forEach(p=>{if(!groups[p.categoria])groups[p.categoria]=[];groups[p.categoria].push(p);});
+    el.innerHTML=Object.entries(groups).map(([cat,prods])=>`
+      <div class="cat-group">
+        <div class="cat-header">${esc(cat)}</div>
+        ${prods.map(p=>{
+          const pts=getPtsDia(p);
+          const esDia=pts!==p.puntos;
+          return `
+          <div class="product-item">
+            ${p.imagen?`<img class="product-img" src="${esc(p.imagen)}" alt="${esc(p.nombre)}" onerror="this.style.display='none'" />`:`<div class="product-img-placeholder">🎁</div>`}
+            <div class="product-body">
+              <div class="product-name">${esc(p.nombre)}</div>
+              ${p.descripcion?`<div class="product-desc">${esc(p.descripcion)}</div>`:''}
+            </div>
+            <div class="product-pts">
+              <span class="pts-num">${pts}</span>
+              <span class="pts-text">puntos</span>
+              ${esDia?`<span class="today-badge">${todayName}</span>`:''}
+            </div>
+          </div>`}).join('')}
+      </div>`).join('');
+  }catch(e){el.innerHTML='<div class="empty-state">Error al cargar.</div>';}
 }
+
+// ===== ADMIN =====
 function verifyAdmin(){
- if(document.getElementById('admin-pass').value===ADMIN_PASS){showView('view-admin');adminTab('clientes');toast('Bienvenido Admin','success');}
- else{toast('Contrasena incorrecta','error');}
+  if(document.getElementById('admin-pass').value===ADMIN_PASS){showView('view-admin');adminTab('clientes');toast('Bienvenido Admin','success');}
+  else{toast('Contraseña incorrecta','error');}
 }
 function adminLogout(){showView('view-selector');}
+
 function adminTab(tab){
- document.getElementById('apanel-clientes').style.display=tab==='clientes'?'block':'none';
- document.getElementById('apanel-catalogo').style.display=tab==='catalogo'?'block':'none';
- document.getElementById('atab-clientes').classList.toggle('active',tab==='clientes');
- document.getElementById('atab-catalogo').classList.toggle('active',tab==='catalogo');
- if(tab==='catalogo')loadAdminCatalog();
+  document.getElementById('apanel-clientes').style.display=tab==='clientes'?'block':'none';
+  document.getElementById('apanel-catalogo').style.display=tab==='catalogo'?'block':'none';
+  document.getElementById('atab-clientes').classList.toggle('active',tab==='clientes');
+  document.getElementById('atab-catalogo').classList.toggle('active',tab==='catalogo');
+  if(tab==='catalogo')loadAdminCatalog();
 }
+
 let st;
 function searchProfiles(now=false){clearTimeout(st);if(now){_doSearch();return;}st=setTimeout(_doSearch,320);}
+
 async function _doSearch(){
- const q=document.getElementById('admin-search').value.trim();
- const el=document.getElementById('search-results');
- if(!q){el.innerHTML='';return;}
- el.innerHTML='<span class="spinner"></span>';
- try{
-   const isNum=/^\d+$/.test(q);
-   const rows=isNum?await sbGet('perfiles',`dni=eq.${encodeURIComponent(q)}&order=nombre.asc`):await sbGet('perfiles',`nombre=ilike.*${encodeURIComponent(q)}*&order=nombre.asc&limit=20`);
-   renderClients(rows);
- }catch(e){el.innerHTML='<div class="empty-state">Error al buscar.</div>';}
+  const q=document.getElementById('admin-search').value.trim();
+  const el=document.getElementById('search-results');
+  if(!q){el.innerHTML='';return;}
+  el.innerHTML='<span class="spinner"></span>';
+  try{
+    const isNum=/^\d+$/.test(q);
+    const rows=isNum
+      ?await sbGet('perfiles',`dni=eq.${encodeURIComponent(q)}&order=nombre.asc`)
+      :await sbGet('perfiles',`nombre=ilike.*${encodeURIComponent(q)}*&order=nombre.asc&limit=20`);
+    renderClients(rows);
+  }catch(e){el.innerHTML='<div class="empty-state">Error al buscar.</div>';}
 }
+
 function renderClients(rows){
- const el=document.getElementById('search-results');
- if(!rows.length){el.innerHTML='<div class="empty-state">Sin resultados.</div>';return;}
- el.innerHTML=rows.map(p=>`
-   <div class="profile-row">
-     <div class="profile-row-top">
-       <div><div class="profile-name">${esc(p.nombre)}</div><div class="profile-dni">DNI ${esc(p.dni)}</div></div>
-       <div class="profile-points"><span class="big" id="pd-${esc(p.dni)}">${p.puntos??0}</span><small>puntos</small></div>
-     </div>
-     <div class="add-pts-row">
-       <input type="number" id="pts-${esc(p.dni)}" placeholder="Puntos a sumar" min="1" onkeydown="if(event.key==='Enter') addPoints('${esc(p.dni)}')" />
-       <button class="btn btn-primary" onclick="addPoints('${esc(p.dni)}')">+ Sumar</button>
-     </div>
-   </div>`).join('');
+  const el=document.getElementById('search-results');
+  if(!rows.length){el.innerHTML='<div class="empty-state">Sin resultados.</div>';return;}
+  el.innerHTML=rows.map(p=>`
+    <div class="profile-row">
+      <div class="profile-row-top">
+        <div><div class="profile-name">${esc(p.nombre)}</div><div class="profile-dni">DNI ${esc(p.dni)}</div></div>
+        <div class="profile-points"><span class="big" id="pd-${esc(p.dni)}">${p.puntos??0}</span><small>puntos</small></div>
+      </div>
+      <div class="pts-actions">
+        <input type="number" id="pts-${esc(p.dni)}" placeholder="Cantidad" min="1" onkeydown="if(event.key==='Enter') addPoints('${esc(p.dni)}')" />
+        <button class="btn btn-primary" onclick="addPoints('${esc(p.dni)}')">+ Sumar</button>
+        <button class="btn btn-canjear" onclick="restarPoints('${esc(p.dni)}')">− Canjear</button>
+        <button class="btn btn-editar-pts" onclick="toggleEditPts('${esc(p.dni)}')">✏️ Editar</button>
+      </div>
+      <div class="edit-pts-row" id="editrow-${esc(p.dni)}">
+        <input type="number" id="editpts-${esc(p.dni)}" placeholder="Nuevo total de puntos" min="0" />
+        <button class="btn btn-primary" onclick="setPoints('${esc(p.dni)}')">Guardar</button>
+        <button class="btn btn-secondary" onclick="toggleEditPts('${esc(p.dni)}')">Cancelar</button>
+      </div>
+      <button class="historial-btn" onclick="toggleHistorial('${esc(p.dni)}')">📋 Ver historial</button>
+      <div class="historial-panel" id="hist-${esc(p.dni)}">
+        <span class="spinner"></span>
+      </div>
+    </div>`).join('');
 }
+
+function toggleEditPts(dni){
+  const row=document.getElementById(`editrow-${dni}`);
+  row.classList.toggle('open');
+  if(row.classList.contains('open')){
+    const cur=document.getElementById(`pd-${dni}`).textContent;
+    document.getElementById(`editpts-${dni}`).value=cur;
+    document.getElementById(`editpts-${dni}`).focus();
+  }
+}
+
+async function setPoints(dni){
+  const input=document.getElementById(`editpts-${dni}`);
+  const val=parseInt(input.value);
+  if(isNaN(val)||val<0){toast('Valor inválido','error');return;}
+  try{
+    const[cur]=await sbGet('perfiles',`dni=eq.${encodeURIComponent(dni)}&limit=1`);
+    const anterior=cur.puntos||0;
+    await sbPatch('perfiles',`dni=eq.${encodeURIComponent(dni)}`,{puntos:val});
+    await sbPost('transacciones',{dni,tipo:'edicion',puntos:val,descripcion:`Edición manual: ${anterior} → ${val} pts`});
+    document.getElementById(`pd-${dni}`).textContent=val;
+    document.getElementById(`editrow-${dni}`).classList.remove('open');
+    toast(`Puntos actualizados a ${val}`,'success');
+  }catch(e){toast('Error al actualizar','error');}
+}
+
 async function addPoints(dni){
- const input=document.getElementById(`pts-${dni}`);
- const val=parseInt(input.value);
- if(!val||val<1){toast('Ingresa una cantidad valida','error');return;}
- try{
-   const[cur]=await sbGet('perfiles',`dni=eq.${encodeURIComponent(dni)}&limit=1`);
-   const newPts=(cur.puntos||0)+val;
-   await sbPatch('perfiles',`dni=eq.${encodeURIComponent(dni)}`,{puntos:newPts});
-   document.getElementById(`pd-${dni}`).textContent=newPts;
-   input.value='';
-   toast(`+${val} puntos sumados!`,'success');
- }catch(e){toast('Error al actualizar','error');}
+  const input=document.getElementById(`pts-${dni}`);
+  const val=parseInt(input.value);
+  if(!val||val<1){toast('Ingresa una cantidad válida','error');return;}
+  try{
+    const[cur]=await sbGet('perfiles',`dni=eq.${encodeURIComponent(dni)}&limit=1`);
+    const newPts=(cur.puntos||0)+val;
+    await sbPatch('perfiles',`dni=eq.${encodeURIComponent(dni)}`,{puntos:newPts});
+    await sbPost('transacciones',{dni,tipo:'suma',puntos:val,descripcion:`Suma de ${val} puntos`});
+    document.getElementById(`pd-${dni}`).textContent=newPts;
+    input.value='';
+    toast(`+${val} puntos sumados!`,'success');
+  }catch(e){toast('Error al actualizar','error');}
 }
+
+async function restarPoints(dni){
+  const input=document.getElementById(`pts-${dni}`);
+  const val=parseInt(input.value);
+  if(!val||val<1){toast('Ingresa una cantidad a canjear','error');return;}
+  try{
+    const[cur]=await sbGet('perfiles',`dni=eq.${encodeURIComponent(dni)}&limit=1`);
+    const actual=cur.puntos||0;
+    if(val>actual){toast(`No tiene suficientes puntos (tiene ${actual})`,'error');return;}
+    const newPts=actual-val;
+    await sbPatch('perfiles',`dni=eq.${encodeURIComponent(dni)}`,{puntos:newPts});
+    await sbPost('transacciones',{dni,tipo:'canje',puntos:val,descripcion:`Canje de ${val} puntos`});
+    document.getElementById(`pd-${dni}`).textContent=newPts;
+    input.value='';
+    toast(`−${val} puntos canjeados!`,'success');
+  }catch(e){toast('Error al canjear','error');}
+}
+
+async function toggleHistorial(dni){
+  const panel=document.getElementById(`hist-${dni}`);
+  panel.classList.toggle('open');
+  if(panel.classList.contains('open')){
+    panel.innerHTML='<span class="spinner"></span>';
+    try{
+      const rows=await sbGet('transacciones',`dni=eq.${encodeURIComponent(dni)}&order=fecha.desc&limit=30`);
+      if(!rows.length){panel.innerHTML='<div class="empty-state" style="padding:16px">Sin movimientos aún.</div>';return;}
+      panel.innerHTML=rows.map(tx=>`
+        <div class="tx-item">
+          <span class="tx-tipo ${tx.tipo}">${tx.tipo==='suma'?'Suma':tx.tipo==='canje'?'Canje':'Edición'}</span>
+          <span style="flex:1;padding:0 8px;font-size:12px;color:var(--text-soft)">${esc(tx.descripcion||'-')}</span>
+          <span class="tx-pts ${tx.tipo}">${tx.tipo==='suma'?'+':''}${tx.tipo==='canje'?'-':''}${tx.puntos}</span>
+        </div>`).join('');
+    }catch(e){panel.innerHTML='<div class="empty-state">Error.</div>';}
+  }
+}
+
+// ===== CATALOGO ADMIN =====
 async function loadAdminCatalog(){
- const el=document.getElementById('admin-catalog-list');
- el.innerHTML='<span class="spinner"></span>';
- try{
-   const rows=await sbGet('productos','order=categoria.asc,nombre.asc');
-   if(!rows.length){el.innerHTML='<div class="empty-state">Sin productos aun.</div>';return;}
-   el.innerHTML=rows.map(p=>`
-     <div class="admin-product-item">
-       ${p.imagen?`<img class="admin-thumb" src="${esc(p.imagen)}" alt="${esc(p.nombre)}" onerror="this.style.display='none'" />`:''}
-       <div class="admin-product-info">
-         <div class="admin-product-name">${esc(p.nombre)}</div>
-         <div class="admin-product-meta">${esc(p.categoria)}${p.descripcion?' · '+esc(p.descripcion):''}</div>
-       </div>
-       <div class="admin-product-pts">${p.puntos}<small>pts</small></div>
-       <button class="btn btn-danger" onclick="deleteProduct('${p.id}')">X</button>
-     </div>`).join('');
- }catch(e){el.innerHTML='<div class="empty-state">Error al cargar.</div>';}
+  const el=document.getElementById('admin-catalog-list');
+  el.innerHTML='<span class="spinner"></span>';
+  try{
+    const rows=await sbGet('productos','order=categoria.asc,nombre.asc');
+    if(!rows.length){el.innerHTML='<div class="empty-state">Sin productos aún.</div>';return;}
+    el.innerHTML=rows.map(p=>`
+      <div class="admin-product-item" id="prod-${p.id}">
+        ${p.imagen?`<img class="admin-thumb" src="${esc(p.imagen)}" alt="${esc(p.nombre)}" onerror="this.style.display='none'" />`:''}
+        <div class="admin-product-info">
+          <div class="admin-product-name">${esc(p.nombre)}</div>
+          <div class="admin-product-meta">${esc(p.categoria)}${p.descripcion?' · '+esc(p.descripcion):''}</div>
+        </div>
+        <div class="admin-product-pts" id="prodpts-${p.id}">${getPtsDia(p)}<small>pts hoy</small></div>
+        <button class="btn btn-warning" onclick="toggleProductEdit('${p.id}')">✏️</button>
+        <button class="btn btn-danger" onclick="deleteProduct('${p.id}')">✕</button>
+        <div class="product-edit-panel" id="pedit-${p.id}">
+          <div class="field">
+            <label>Puntos base (todos los días)</label>
+            <input type="number" id="pbase-${p.id}" value="${p.puntos||''}" placeholder="Puntos base" min="1" />
+          </div>
+          <label style="margin-bottom:8px;display:block">Puntos por día (dejar vacío = usa base)</label>
+          <div class="days-grid">
+            ${DAYS.map((d,i)=>`
+              <div class="day-field">
+                <label>${DAYS_LABEL[i]}</label>
+                <input type="number" id="p${d}-${p.id}" value="${p['puntos_'+d]||''}" placeholder="-" min="0" />
+              </div>`).join('')}
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <button class="btn btn-primary" style="flex:1" onclick="saveProductPts('${p.id}')">Guardar</button>
+            <button class="btn btn-secondary" style="flex:1" onclick="toggleProductEdit('${p.id}')">Cancelar</button>
+          </div>
+        </div>
+      </div>`).join('');
+  }catch(e){el.innerHTML='<div class="empty-state">Error al cargar.</div>';}
 }
+
+function toggleProductEdit(id){
+  const panel=document.getElementById(`pedit-${id}`);
+  panel.classList.toggle('open');
+}
+
+async function saveProductPts(id){
+  const base=parseInt(document.getElementById(`pbase-${id}`).value)||null;
+  if(!base||base<1){toast('Ingresa puntos base válidos','error');return;}
+  const updates={puntos:base};
+  DAYS.forEach(d=>{
+    const v=parseInt(document.getElementById(`p${d}-${id}`).value);
+    updates[`puntos_${d}`]=isNaN(v)||v<=0?null:v;
+  });
+  try{
+    await sbPatch('productos',`id=eq.${id}`,updates);
+    toast('Producto actualizado!','success');
+    toggleProductEdit(id);
+    loadAdminCatalog();
+  }catch(e){toast('Error al guardar','error');console.error(e);}
+}
+
 async function addProduct(){
- const nombre=document.getElementById('new-nombre').value.trim();
- const categoria=document.getElementById('new-categoria').value.trim();
- const puntos=parseInt(document.getElementById('new-puntos').value);
- const descripcion=document.getElementById('new-desc').value.trim();
- const imagen=document.getElementById('new-imagen').value.trim();
- if(!nombre||!categoria||!puntos){toast('Completa nombre, categoria y puntos','error');return;}
- try{
-   await sbPost('productos',{nombre,categoria,puntos,descripcion:descripcion||null,imagen:imagen||null});
-   ['new-nombre','new-categoria','new-puntos','new-desc','new-imagen'].forEach(id=>document.getElementById(id).value='');
-   toast('Producto agregado!','success');
-   loadAdminCatalog();
- }catch(e){toast('Error al agregar','error');console.error(e);}
+  const nombre=document.getElementById('new-nombre').value.trim();
+  const categoria=document.getElementById('new-categoria').value.trim();
+  const puntos=parseInt(document.getElementById('new-puntos').value);
+  const descripcion=document.getElementById('new-desc').value.trim();
+  const imagen=document.getElementById('new-imagen').value.trim();
+  if(!nombre||!categoria||!puntos){toast('Completa nombre, categoria y puntos','error');return;}
+  try{
+    await sbPost('productos',{nombre,categoria,puntos,descripcion:descripcion||null,imagen:imagen||null});
+    ['new-nombre','new-categoria','new-puntos','new-desc','new-imagen'].forEach(id=>document.getElementById(id).value='');
+    toast('Producto agregado!','success');
+    loadAdminCatalog();
+  }catch(e){toast('Error al agregar','error');console.error(e);}
 }
+
 async function deleteProduct(id){
- try{await sbDelete('productos',`id=eq.${id}`);toast('Producto eliminado','success');loadAdminCatalog();}
- catch(e){toast('Error al eliminar','error');}
+  try{await sbDelete('productos',`id=eq.${id}`);toast('Producto eliminado','success');loadAdminCatalog();}
+  catch(e){toast('Error al eliminar','error');}
 }
+
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 </script>
 </body>

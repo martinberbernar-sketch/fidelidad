@@ -315,7 +315,12 @@
 
  <!-- SELECTOR -->
  <div class="view active" id="view-selector">
-   <div class="selector-grid" style="grid-template-columns:1fr;">
+   <div class="selector-grid">
+     <button class="selector-btn primary-btn" onclick="showView('view-client')">
+       <span class="icon">&#11088;</span>
+       <span class="label">Soy Cliente</span>
+       <span class="sub">Ver mis puntos</span>
+     </button>
      <button class="selector-btn" onclick="promptAdmin()">
        <span class="icon">&#9881;&#65039;</span>
        <span class="label">Administrar</span>
@@ -391,7 +396,6 @@
    <div class="section-tabs">
      <button class="section-tab active" id="atab-clientes" onclick="adminTab('clientes')">Clientes</button>
      <button class="section-tab" id="atab-catalogo" onclick="adminTab('catalogo')">Catalogo</button>
-     <button class="section-tab" id="atab-compra" onclick="adminTab('compra')">&#128722; Compra</button>
    </div>
 
    <!-- PANEL CLIENTES -->
@@ -400,44 +404,6 @@
        <p class="card-title">Buscar cliente</p>
        <div class="field"><label>Nombre o DNI</label><input type="text" id="admin-search" placeholder="Escribi para buscar..." oninput="searchProfiles()" onkeydown="if(event.key==='Enter') searchProfiles(true)" /></div>
        <div id="search-results"></div>
-     </div>
-   </div>
-
-   <!-- PANEL COMPRA -->
-   <div id="apanel-compra" style="display:none;">
-     <div class="card">
-       <p class="card-title">&#128722; Registrar Compra</p>
-       <div class="field">
-         <label>DNI del cliente</label>
-         <div style="display:flex;gap:8px;">
-           <input type="number" id="compra-dni" placeholder="Ingresa DNI..." style="flex:1" oninput="compraSearchClient()" />
-         </div>
-       </div>
-       <div id="compra-client-info" style="display:none;margin-bottom:16px;">
-         <div style="background:var(--surface2);border-radius:var(--radius-sm);padding:12px 14px;border:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-           <div>
-             <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;" id="compra-client-name">-</div>
-             <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Puntos actuales: <strong id="compra-client-pts">0</strong></div>
-           </div>
-           <div style="background:linear-gradient(135deg,var(--primary),var(--primary-light));color:white;border-radius:40px;padding:6px 14px;font-size:12px;font-weight:800;font-family:'Nunito',sans-serif;">Cliente ✓</div>
-         </div>
-       </div>
-       <div id="compra-client-notfound" style="display:none;margin-bottom:16px;">
-         <div style="background:#fff0f0;border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;color:var(--error);font-weight:600;">DNI no encontrado en el sistema.</div>
-       </div>
-     </div>
-     <div class="card" id="compra-productos-card" style="display:none;">
-       <p class="card-title">Productos</p>
-       <div id="compra-catalog-list"><span class="spinner"></span></div>
-     </div>
-     <div class="card" id="compra-resumen-card" style="display:none;">
-       <p class="card-title">Resumen de compra</p>
-       <div id="compra-resumen-items"></div>
-       <div style="display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--border);margin-top:8px;">
-         <span style="font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;">Total a sumar</span>
-         <span style="font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;color:var(--primary);" id="compra-total-pts">0 pts</span>
-       </div>
-       <button class="btn btn-primary" style="margin-top:16px;" onclick="confirmarCompra()">&#10003; Confirmar y sumar puntos</button>
      </div>
    </div>
 
@@ -465,7 +431,7 @@
 
 <script>
 const SB_URL="https://jskdumhuduxtyfzlrwcc.supabase.co";
-const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impza2R1bWh1ZHV4dHlmemxyd2NjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3NDI4ODksImV4cCI6MjA5MzMxODg4OX0.jWIrw0Szw7LzawUrhrNpySSEIHF5ttITjkbPrVkgnag";
+const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impza2R1bWh1ZHV4dHlmemxyd2NjIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3Nzc0Mjg4OSwiZXhwIjoyMDkzMzE4ODg5fQ.44IEO5Wjhf0G9usA44Mz0hYI-bSiLUe0gMw_9E1aCv0";
 const ADMIN_PASS="admin1234";
 const H={"Content-Type":"application/json","apikey":SB_KEY,"Authorization":`Bearer ${SB_KEY}`,"Prefer":"return=representation"};
 const DAYS=["dom","lun","mar","mie","jue","vie","sab"];
@@ -579,141 +545,9 @@ function adminLogout(){showView('view-selector');}
 function adminTab(tab){
   document.getElementById('apanel-clientes').style.display=tab==='clientes'?'block':'none';
   document.getElementById('apanel-catalogo').style.display=tab==='catalogo'?'block':'none';
-  document.getElementById('apanel-compra').style.display=tab==='compra'?'block':'none';
   document.getElementById('atab-clientes').classList.toggle('active',tab==='clientes');
   document.getElementById('atab-catalogo').classList.toggle('active',tab==='catalogo');
-  document.getElementById('atab-compra').classList.toggle('active',tab==='compra');
   if(tab==='catalogo')loadAdminCatalog();
-  if(tab==='compra'){resetCompra();}
-}
-
-// ===== COMPRA =====
-let compraCart={};
-let compraClientDni='';
-let compraProductos=[];
-let compraSearchTimer;
-
-function resetCompra(){
-  compraCart={};compraClientDni='';compraProductos=[];
-  document.getElementById('compra-dni').value='';
-  document.getElementById('compra-client-info').style.display='none';
-  document.getElementById('compra-client-notfound').style.display='none';
-  document.getElementById('compra-productos-card').style.display='none';
-  document.getElementById('compra-resumen-card').style.display='none';
-}
-
-function compraSearchClient(){
-  clearTimeout(compraSearchTimer);
-  compraSearchTimer=setTimeout(_doCompraSearch,400);
-}
-
-async function _doCompraSearch(){
-  const dni=document.getElementById('compra-dni').value.trim();
-  document.getElementById('compra-client-info').style.display='none';
-  document.getElementById('compra-client-notfound').style.display='none';
-  document.getElementById('compra-productos-card').style.display='none';
-  document.getElementById('compra-resumen-card').style.display='none';
-  compraCart={};compraClientDni='';
-  if(!dni||dni.length<4)return;
-  try{
-    const[p]=await sbGet('perfiles',`dni=eq.${encodeURIComponent(dni)}&limit=1`);
-    if(!p){document.getElementById('compra-client-notfound').style.display='block';return;}
-    compraClientDni=p.dni;
-    document.getElementById('compra-client-name').textContent=p.nombre;
-    document.getElementById('compra-client-pts').textContent=p.puntos??0;
-    document.getElementById('compra-client-info').style.display='block';
-    document.getElementById('compra-productos-card').style.display='block';
-    loadCompraProductos();
-  }catch(e){toast('Error al buscar cliente','error');}
-}
-
-async function loadCompraProductos(){
-  const el=document.getElementById('compra-catalog-list');
-  el.innerHTML='<span class="spinner"></span>';
-  try{
-    compraProductos=await sbGet('productos','order=categoria.asc,nombre.asc');
-    if(!compraProductos.length){el.innerHTML='<div class="empty-state">Sin productos en catalogo.</div>';return;}
-    renderCompraProductos();
-  }catch(e){el.innerHTML='<div class="empty-state">Error al cargar.</div>';}
-}
-
-function renderCompraProductos(){
-  const el=document.getElementById('compra-catalog-list');
-  const groups={};
-  compraProductos.forEach(p=>{if(!groups[p.categoria])groups[p.categoria]=[];groups[p.categoria].push(p);});
-  el.innerHTML=Object.entries(groups).map(([cat,prods])=>`
-    <div class="cat-header">${esc(cat)}</div>
-    ${prods.map(p=>{
-      const pts=getPtsDia(p);
-      const qty=compraCart[p.id]||0;
-      return `<div class="admin-product-item" id="cprod-${p.id}">
-        ${p.imagen?`<img class="admin-thumb" src="${esc(p.imagen)}" onerror="this.style.display='none'" />`:''}
-        <div class="admin-product-info">
-          <div class="admin-product-name">${esc(p.nombre)}</div>
-          <div class="admin-product-meta">${esc(p.categoria)}</div>
-        </div>
-        <div class="admin-product-pts">${pts}<small>pts</small></div>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <button onclick="compraQty('${p.id}',-1)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);font-size:16px;cursor:pointer;font-weight:800;color:var(--text);">−</button>
-          <span id="cqty-${p.id}" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;min-width:20px;text-align:center;color:var(--primary);">${qty||0}</span>
-          <button onclick="compraQty('${p.id}',1)" style="width:30px;height:30px;border-radius:8px;border:none;background:var(--primary);color:white;font-size:16px;cursor:pointer;font-weight:800;">+</button>
-        </div>
-      </div>`;
-    }).join('')}`).join('');
-}
-
-function compraQty(id,delta){
-  const prod=compraProductos.find(p=>String(p.id)===String(id));
-  if(!prod)return;
-  const cur=compraCart[id]||0;
-  const next=Math.max(0,cur+delta);
-  if(next===0)delete compraCart[id];else compraCart[id]=next;
-  const el=document.getElementById(`cqty-${id}`);
-  if(el)el.textContent=next;
-  actualizarResumen();
-}
-
-function actualizarResumen(){
-  const items=Object.entries(compraCart);
-  const card=document.getElementById('compra-resumen-card');
-  if(!items.length){card.style.display='none';return;}
-  card.style.display='block';
-  let total=0;
-  const html=items.map(([id,qty])=>{
-    const prod=compraProductos.find(p=>String(p.id)===String(id));
-    if(!prod)return'';
-    const pts=getPtsDia(prod)*qty;
-    total+=pts;
-    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;">
-      <span style="color:var(--text)">${esc(prod.nombre)} x${qty}</span>
-      <span style="font-family:'Nunito',sans-serif;font-weight:800;color:var(--primary);">+${pts} pts</span>
-    </div>`;
-  }).join('');
-  document.getElementById('compra-resumen-items').innerHTML=html;
-  document.getElementById('compra-total-pts').textContent=`${total} pts`;
-}
-
-async function confirmarCompra(){
-  if(!compraClientDni){toast('Selecciona un cliente','error');return;}
-  const items=Object.entries(compraCart);
-  if(!items.length){toast('Agregá al menos un producto','error');return;}
-  const btn=document.querySelector('#compra-resumen-card .btn-primary');
-  btn.disabled=true;btn.textContent='Confirmando...';
-  try{
-    const[cur]=await sbGet('perfiles',`dni=eq.${encodeURIComponent(compraClientDni)}&limit=1`);
-    let totalPts=0;
-    const detalle=items.map(([id,qty])=>{
-      const prod=compraProductos.find(p=>String(p.id)===String(id));
-      const pts=getPtsDia(prod)*qty;
-      totalPts+=pts;
-      return `${prod.nombre} x${qty} (${pts}pts)`;
-    }).join(', ');
-    const newPts=(cur.puntos||0)+totalPts;
-    await sbPatch('perfiles',`dni=eq.${encodeURIComponent(compraClientDni)}`,{puntos:newPts});
-    await sbPost('transacciones',{dni:compraClientDni,tipo:'suma',puntos:totalPts,descripcion:`Compra: ${detalle}`});
-    toast(`+${totalPts} puntos sumados a ${cur.nombre}!`,'success');
-    resetCompra();
-  }catch(e){toast('Error al confirmar compra','error');btn.disabled=false;btn.textContent='✓ Confirmar y sumar puntos';}
 }
 
 let st;
